@@ -1,8 +1,8 @@
 **Scripts and data to generate models and figures for "Revisiting the Ocean’s Metabolic Balance: Correcting Biases in Bottle Incubations Reveals a More Autotrophic Ocean".**
 
-**/data summary:**\
+# data summary\
 
-# Field_sampling.csv
+### Field_sampling.csv
 Field measurements conducted in the marginal seas of the Northwest Pacific, including metabolic state and environmental parameters, were collected at stations during five cruises between 2018 and 2023.
 - **Cruise**: Cruise time
 - **Date**: Sampling date
@@ -30,7 +30,7 @@ Field measurements conducted in the marginal seas of the Northwest Pacific, incl
 - **BP_t0_filtered**: Initial bacterial production in pre-filtered bottle incubations (in situ bacterial production) (unit: mg C m⁻³ d⁻¹)
 - **BP_t1_filtered**: Bacterial production after 24-hour incubation in pre-filtered bottles (unit: mg C m⁻³ d⁻¹)
 
-# high-frequency_sampling.csv
+### high-frequency_sampling.csv
 Time-series observations of bacterial abundance and bacterial production during bottle incubations at three selected stations.
 - **Station**: Station ID
 - **Lon**: Station longitude
