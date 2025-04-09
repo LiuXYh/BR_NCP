@@ -1,6 +1,6 @@
 **Scripts and data to generate models and figures for "Revisiting the Ocean’s Metabolic Balance: Correcting Biases in Bottle Incubations Reveals a More Autotrophic Ocean".**
 
-# data summary\
+# data summary
 
 ### Field_sampling.csv
 Field measurements conducted in the marginal seas of the Northwest Pacific, including metabolic state and environmental parameters, were collected at stations during five cruises between 2018 and 2023.
@@ -41,7 +41,7 @@ Time-series observations of bacterial abundance and bacterial production during 
 - **BP_mean**: Mean bacterial production measured at the i-th hour (unit: mg C m⁻³ d⁻¹)
 - **BP_sd**: Standard deviation of bacterial production measured at the i-th hour
 
-# light-dark_bottle_dataset.csv
+### light-dark_bottle_dataset.csv
 Global light-dark bottle incubation dataset, collected from previously reported literature.
 - **Date**: Sampling date
 - **Lon**: Sampling longitude
@@ -53,7 +53,7 @@ Global light-dark bottle incubation dataset, collected from previously reported 
 - **Reference**: Data contributor
 - **Source**: Data source
 
-# euphotic-zone_integrated_NCP_grid.csv
+### euphotic-zone_integrated_NCP_grid.csv
 1° gridded climatology dataset of marine metabolic rates and environmental factors.
 - **Lon**: Grid longitude
 - **Lat**: Grid latitude
@@ -71,7 +71,7 @@ Global light-dark bottle incubation dataset, collected from previously reported 
 - **NCP**: Climatology of net community production integrated over the euphotic zone for the grid (unit: mmol O₂ m⁻² d⁻¹), calculated from light-dark bottle dataset
 - **NCP_corr**: Climatology of net community production integrated over the euphotic zone for the grid (unit: mmol O₂ m⁻² d⁻¹), calculated from the light-dark bottle dataset after correcting for bacterial respiration rate
 
-# WOA_RS_grid.csv
+### WOA_RS_grid.csv
 1° gridded climatology dataset of the global ocean.
 - **Lon**: Grid longitude
 - **Lat**: Grid latitude
@@ -89,15 +89,16 @@ Global light-dark bottle incubation dataset, collected from previously reported 
 - **CbPM**: Climatology of net primary production integrated over the euphotic zone for the grid (unit: mg C m⁻² d⁻¹), from the carbon-based primary productivity model
 - **GPP**: Climatology of gross primary production integrated over the euphotic zone for the grid (unit: mmol O₂ m⁻² d⁻¹), from Huang et al. (2021)
 
-# inverse_biogeochemical_model.csv
+### inverse_biogeochemical_model.csv
 1° gridded dataset of global ocean total organic carbon export rates, derived from Wang et al. (2023).
 - **Lon**: Grid longitude
 - **Lat**: Grid latitude
 - **TOCflux**: Rate of total organic carbon export (particulate organic carbon and dissolved organic carbon) at the euphotic zone (unit: mg C m⁻² d⁻¹)
 
 
-**/output summary:**\
-corrected_BR.csv:
+# output summary
+
+### corrected_BR.csv
 Field measurements from the marginal seas of the Northwest Pacific during five cruises between 2018 and 2023, showing corrected bacterial respiration and net community production at sampling stations.
 - **BGE**: Bacterial Growth Efficiency
 - **BR_total**: Total bacterial respiration rate during 24-hour bottle incubations, including in situ bacterial respiration and the overestimated bacterial respiration due to the bottle incubation effect (unit: mg C m⁻³ d⁻¹)
@@ -106,7 +107,7 @@ Field measurements from the marginal seas of the Northwest Pacific during five c
 - **BRbias_CR**: Proportion of overestimated bacterial respiration relative to community respiration
 - **NCP_corr**: Net community production after correcting for bacterial respiration
 
-global_NCP_grid_EOF.csv:
+### global_NCP_grid_EOF.csv
 1° gridded climatology dataset of global ocean's net community production, based on global predictions made using a machine learning model derived from the light-dark bottle dataset.
 - **Lon**: Grid longitude
 - **Lat**: Grid latitude
@@ -115,8 +116,7 @@ global_NCP_grid_EOF.csv:
 - **NCP_corr**: Global NCP predictions after bacterial respiration correction (unit: mg C m⁻² d⁻¹)
 
 
-**/scripts summary:**\
-figurexx.R - generates figure xx\
-tablexx.R - generates table xx\
-
+# scripts summary
+- **figurexx.R**: generates figure xx
+- **tablexx.R**: generates table xx
 
