@@ -1,6 +1,6 @@
-**Scripts and data to generate models and figures for "Revisiting the Ocean’s Metabolic Balance: Correcting Biases in Bottle Incubations Reveals a More Autotrophic Ocean".**
+Scripts and data to generate models and figures for **"Revisiting the Ocean’s Metabolic Balance: Correcting Biases in Bottle Incubations Reveals a More Autotrophic Ocean"**.
 
-# data summary
+# /data/
 
 ### Field_sampling.csv
 Field measurements conducted in the marginal seas of the Northwest Pacific, including metabolic state and environmental parameters, were collected at stations during five cruises between 2018 and 2023.
@@ -96,7 +96,7 @@ Global light-dark bottle incubation dataset, collected from previously reported 
 - **TOCflux**: Rate of total organic carbon export (particulate organic carbon and dissolved organic carbon) at the euphotic zone (unit: mg C m⁻² d⁻¹)
 
 
-# output summary
+# /output/
 
 ### corrected_BR.csv
 Field measurements from the marginal seas of the Northwest Pacific during five cruises between 2018 and 2023, showing corrected bacterial respiration and net community production at sampling stations.
@@ -116,7 +116,7 @@ Field measurements from the marginal seas of the Northwest Pacific during five c
 - **NCP_corr**: Global NCP predictions after bacterial respiration correction (unit: mg C m⁻² d⁻¹)
 
 
-# scripts summary
+# /scripts/
 - **figurexx.R**: generates figure xx
 - **tablexx.R**: generates table xx
 
