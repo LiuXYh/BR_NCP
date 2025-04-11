@@ -29,8 +29,8 @@ p_BR
 
 # Density distribution of BRbias/CR (Fig. 2b)
 p_BRbias_CR <- ggplot(dat, aes(x = BRbias_CR)) +
-geom_density(bins = 10) +
-geom_rug() +
+geom_density(bins = 10, fill = '#DE6826', alpha = 0.5, color = NA) +
+geom_rug(color = '#DE6826') +
 theme(panel.grid = element_blank(), 
 	panel.background = element_blank(),
 	axis.line = element_line(color = 'black', size = 0.5), 
