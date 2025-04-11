@@ -22,7 +22,7 @@ mean(dat$BP_fold, na.rm = TRUE)
 mean(dat$sBP_fold, na.rm = TRUE)
 
 
-# Presented as violin plots showing the distribution of growth multiples of BA, BP, and sBP before and after incubation (Fig. 1a)
+# Presented as violin plots showing the distribution of growth multiples of BA, BP, and sBP before and after incubation (Fig. 2a)
 fold <- dat[c('No', 'BA_fold', 'BP_fold', 'sBP_fold')]
 fold <- melt(fold, id = 'No')
 fold$variable <- factor(fold$variable, levels = c('BA_fold', 'BP_fold', 'sBP_fold'), labels = c('BAt1/BAt0', 'BPt1/BPt0', 'sBPt1/sBPt0'))
@@ -60,7 +60,7 @@ dat$NCP_corr <- dat$NCP+dat$BRbias/12
 write.csv(dat, '../output/corrected_BR.csv', row.names = FALSE, na = '')  #output
 
 
-# Correlations between bacterial activity changes and environmental factors (Fig. 1b)
+# Correlations between bacterial activity changes and environmental factors (Fig. 2b)
 env <- dat[c('Temperature', 'Salinity', 'Chla', 'DO', 'Si', 'PO4', 'NO3', 'BA_t0', 'BP_t0', 'sBP_t0', 'BA_fold', 'BP_fold', 'sBP_fold', 'BRbias_CR')]
 names(env) <- c('Temperature', 'Salinity', 'Chla', 'DO', 'Si', 'PO4', 'NO3', 'BAt0', 'BPt0', 'sBPt0', 'BAt1/BAt0', 'BPt1/BPt0', 'sBPt1/sBPt0', 'BRbias/CR')
 
