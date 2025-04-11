@@ -51,15 +51,15 @@ scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F
 labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Salinity')
 
 
-# Nitrate (NO3−, μmol L−1) (Fig. S1d)
-dat_NO3 <- na.omit(dat[c('Lon', 'Lat', 'NO3')])
-dat_NO3 <- dat_NO3[order(dat_NO3$NO3, decreasing = FALSE), ]
-dat_NO3$NO3 <- log10(dat_NO3$NO3)
+# Silicate (SiO43−, μmol L−1) (Fig. S1d)
+dat_Si <- na.omit(dat[c('Lon', 'Lat', 'Si')])
+dat_Si <- dat_Si[order(dat_Si$Si, decreasing = TRUE), ]
+dat_Si$Si <- log10(dat_Si$Si)
 
 p +
-geom_point(data = dat_NO3, size = 2.5, aes(x = Lon, y = Lat, color = NO3)) +
+geom_point(data = dat_Si, size = 2.5, aes(x = Lon, y = Lat, color = Si)) +
 scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F8FF05', '#FF6900', '#8D0000')) +
-labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 NO3')
+labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 Si')
 
 
 # Phosphate (PO43−, μmol L−1) (Fig. S1e)
@@ -73,15 +73,15 @@ scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F
 labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 PO4')
 
 
-# Silicate (SiO43−, μmol L−1) (Fig. S1f)
-dat_Si <- na.omit(dat[c('Lon', 'Lat', 'Si')])
-dat_Si <- dat_Si[order(dat_Si$Si, decreasing = TRUE), ]
-dat_Si$Si <- log10(dat_Si$Si)
+# Nitrate (NO3−, μmol L−1) (Fig. S1f)
+dat_NO3 <- na.omit(dat[c('Lon', 'Lat', 'NO3')])
+dat_NO3 <- dat_NO3[order(dat_NO3$NO3, decreasing = FALSE), ]
+dat_NO3$NO3 <- log10(dat_NO3$NO3)
 
 p +
-geom_point(data = dat_Si, size = 2.5, aes(x = Lon, y = Lat, color = Si)) +
+geom_point(data = dat_NO3, size = 2.5, aes(x = Lon, y = Lat, color = NO3)) +
 scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F8FF05', '#FF6900', '#8D0000')) +
-labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 Si')
+labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 NO3')
 
 
 # Chlorophyll-a concentrations (Chl-a, mg m−3) (Fig. S1g)
