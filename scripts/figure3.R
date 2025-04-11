@@ -5,7 +5,7 @@ library(ggplot2)
 library(ggpubr)
 
 
-# Density distribution of BR before and after correction of bottle-based measurements (Fig. 2a)
+# Density distribution of BR before and after correction of bottle-based measurements (Fig. 3a)
 dat <- read.csv('../output/corrected_BR.csv')
 
 BR <- dat[c('No', 'BR_total', 'BR_insitu')]
@@ -27,7 +27,7 @@ labs(x = 'BR (mg C m−3 day−1)', y = 'Density', fill = '')
 p_BR
 
 
-# Density distribution of BRbias/CR (Fig. 2b)
+# Density distribution of BRbias/CR (Fig. 3b)
 p_BRbias_CR <- ggplot(dat, aes(x = BRbias_CR)) +
 geom_density(bins = 10, fill = '#DE6826', alpha = 0.5, color = NA) +
 geom_rug(color = '#DE6826') +
