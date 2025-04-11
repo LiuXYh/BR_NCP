@@ -61,8 +61,8 @@ write.csv(dat, '../output/corrected_BR.csv', row.names = FALSE, na = '')  #outpu
 
 
 # Correlations between bacterial activity changes and environmental factors (Fig. 1b)
-env <- dat[c('Temperature', 'Salinity', 'Chla', 'DO', 'NO3', 'PO4', 'Si', 'BA_t0', 'BP_t0', 'sBP_t0', 'BA_fold', 'BP_fold', 'sBP_fold', 'BRbias_CR')]
-names(env) <- c('Temperature', 'Salinity', 'Chla', 'DO', 'NO3', 'PO4', 'Si', 'BAt0', 'BPt0', 'sBPt0', 'BAt1/BAt0', 'BPt1/BPt0', 'sBPt1/sBPt0', 'BRbias/CR')
+env <- dat[c('Temperature', 'Salinity', 'Chla', 'DO', 'Si', 'PO4', 'NO3', 'BA_t0', 'BP_t0', 'sBP_t0', 'BA_fold', 'BP_fold', 'sBP_fold', 'BRbias_CR')]
+names(env) <- c('Temperature', 'Salinity', 'Chla', 'DO', 'Si', 'PO4', 'NO3', 'BAt0', 'BPt0', 'sBPt0', 'BAt1/BAt0', 'BPt1/BPt0', 'sBPt1/sBPt0', 'BRbias/CR')
 
 qcorrplot(correlate(env, method = 'spearman', engine = 'Hmisc'), type = 'lower', diag = FALSE) +
 geom_shaping(color = NA) +
