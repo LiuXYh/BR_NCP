@@ -8,7 +8,7 @@ library(dplyr)
 library(terra)
 
 
-# Distribution of global light-dark bottle incubation sampling stations (Fig. S6a)
+# Distribution of global light-dark bottle incubation sampling stations (Fig. S6)
 LD_dataset <- read.csv('../data/light-dark_bottle_dataset.csv')
 LD_dataset$station <- paste(LD_dataset$Lon, LD_dataset$Lat, LD_dataset$Date, sep = '-')
 LD_dataset <- LD_dataset[!duplicated(LD_dataset$station), ]
@@ -27,23 +27,4 @@ geom_sf(data = LD_dataset_sf, size = 1, color = '#eeb421', inherit.aes = FALSE) 
 theme_minimal()
 
 p_station
-
-
-# Comparison of NCP before and after BR correction, presented as the density distribution of climate mean values at a 1° grid
-NCP_grid <- read.csv('../data/euphotic-zone_integrated_NCP_grid.csv')
-NCP_grid <- NCP_grid[c('No', 'NCP', 'NCP_corr')]
-NCP_grid <- melt(NCP_grid, id = 'No')
-NCP_grid$variable <- factor(NCP_grid$variable, levels = c('NCP', 'NCP_corr'), labels = c('Before correction', 'After correction (NCP+BRbias)'))
-
-p_NCP_grid <- ggplot(NCP_grid, aes(x = value)) +
-geom_density(aes(fill = variable), position = position_dodge(width = 0), bins = 10, alpha = 0.5, color = NA) +
-scale_fill_manual(values = c('#548fbe', '#c11b29')) +
-theme(panel.grid = element_blank(), 
-	panel.background = element_blank(),
-	axis.line = element_line(color = 'black', size = 0.5), 
-	axis.ticks = element_line(color = 'black', size = 0.5), 
-	axis.text = element_text(color = 'black', size = 9)) +
-labs(x = 'NCP (mg C m−2 day−1)', y = 'Density', fill = '')
-
-p_NCP_grid
 
