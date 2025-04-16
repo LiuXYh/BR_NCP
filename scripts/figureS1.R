@@ -51,15 +51,15 @@ scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F
 labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Salinity')
 
 
-# Silicate (SiO43−, μmol L−1) (Fig. S1d)
-dat_Si <- na.omit(dat[c('Lon', 'Lat', 'Si')])
-dat_Si <- dat_Si[order(dat_Si$Si, decreasing = TRUE), ]
-dat_Si$Si <- log10(dat_Si$Si)
+# Nitrate (NO3−, μmol L−1) (Fig. S1d)
+dat_NO3 <- na.omit(dat[c('Lon', 'Lat', 'NO3')])
+dat_NO3 <- dat_NO3[order(dat_NO3$NO3, decreasing = FALSE), ]
+dat_NO3$NO3 <- log10(dat_NO3$NO3)
 
 p +
-geom_point(data = dat_Si, size = 2.5, aes(x = Lon, y = Lat, color = Si)) +
+geom_point(data = dat_NO3, size = 2.5, aes(x = Lon, y = Lat, color = NO3)) +
 scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F8FF05', '#FF6900', '#8D0000')) +
-labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 Si')
+labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 NO3')
 
 
 # Phosphate (PO43−, μmol L−1) (Fig. S1e)
@@ -73,18 +73,28 @@ scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F
 labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 PO4')
 
 
-# Nitrate (NO3−, μmol L−1) (Fig. S1f)
-dat_NO3 <- na.omit(dat[c('Lon', 'Lat', 'NO3')])
-dat_NO3 <- dat_NO3[order(dat_NO3$NO3, decreasing = FALSE), ]
-dat_NO3$NO3 <- log10(dat_NO3$NO3)
+# Silicate (SiO43−, μmol L−1) (Fig. S1f)
+dat_Si <- na.omit(dat[c('Lon', 'Lat', 'Si')])
+dat_Si <- dat_Si[order(dat_Si$Si, decreasing = TRUE), ]
+dat_Si$Si <- log10(dat_Si$Si)
 
 p +
-geom_point(data = dat_NO3, size = 2.5, aes(x = Lon, y = Lat, color = NO3)) +
+geom_point(data = dat_Si, size = 2.5, aes(x = Lon, y = Lat, color = Si)) +
 scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F8FF05', '#FF6900', '#8D0000')) +
-labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 NO3')
+labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 Si')
 
 
-# Chlorophyll-a concentrations (Chl-a, mg m−3) (Fig. S1g)
+# Dissolved oxygen (DO, μmol L−1) (Fig. S1g)
+dat_DO <- na.omit(dat[c('Lon', 'Lat', 'DO')])
+dat_DO <- dat_DO[order(dat_DO$DO, decreasing = FALSE), ]
+
+p +
+geom_point(data = dat_DO, size = 2.5, aes(x = Lon, y = Lat, color = DO)) +
+scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F8FF05', '#FF6900', '#8D0000')) +
+labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'DO')
+
+
+# Chlorophyll-a concentrations (Chl-a, mg m−3) (Fig. S1h)
 dat_Chla <- na.omit(dat[c('Lon', 'Lat', 'Chla')])
 dat_Chla <- dat_Chla[order(dat_Chla$Chla, decreasing = FALSE), ]
 dat_Chla$Chla <- log10(dat_Chla$Chla)
@@ -93,14 +103,4 @@ p +
 geom_point(data = dat_Chla, size = 2.5, aes(x = Lon, y = Lat, color = Chla)) +
 scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F8FF05', '#FF6900', '#8D0000'), limits = c(-1.4, 1)) +
 labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'Log10 Chla')
-
-
-# Dissolved oxygen (DO, μmol L−1) (Fig. S1h)
-dat_DO <- na.omit(dat[c('Lon', 'Lat', 'DO')])
-dat_DO <- dat_DO[order(dat_DO$DO, decreasing = FALSE), ]
-
-p +
-geom_point(data = dat_DO, size = 2.5, aes(x = Lon, y = Lat, color = DO)) +
-scale_color_gradientn(colors = c('#000084', '#004FFF', '#0EFFF0', '#8DFF70', '#F8FF05', '#FF6900', '#8D0000')) +
-labs(x = 'Lon (°E)', y = 'Lat (°N)', color = 'DO')
 
