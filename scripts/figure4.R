@@ -1,7 +1,6 @@
 #### First-order reassessment of the global ocean’s metabolic balance in the euphotic zone by correcting bacterial respiration biases
 
 library(reshape2)
-library(doBy)
 library(ggplot2)
 library(sf)
 library(rnaturalearth)
@@ -12,6 +11,7 @@ library(MBA)
 
 # Read data, for calcuLation details, see "scripts/figureS7.R"
 dat <- read.csv('../output/global_NCP_grid_EOF.csv')
+dat <- subset(dat, Lat > -65 & Lat < 65)
 
 
 ## Annual NCP derived from uncorrected light-dark bottle measurements (Fig. 4a)
@@ -135,87 +135,4 @@ theme_minimal() +
 labs(color = 'Type')
 
 p_compare
-
-
-# Choose the subtropical oligotrophic gyres for the calculation. For detailed information, see "scripts/tableS1.R"
-dat <- read.csv('../data/WOA_RS_grid.csv')
-Chla_year <- summaryBy(Chla~Lon+Lat, dat, FUN = function(x) mean(x, na.rm = TRUE))
-names(Chla_year) <- c('Lon', 'Lat', 'Chla')
-Chla_year <- subset(Chla_year, Chla < 0.1)
-
-NPSG1 <- subset(Chla_year, Lat > 5 & Lat < 40 & Lon > 125 & Lon < 180)
-SPSG1 <- subset(Chla_year, Lat > -40 & Lat < -5 & Lon > 165 & Lon < 180)
-NPSG2 <- subset(Chla_year, Lat > 0 & Lat < 40 & Lon > -180 & Lon < -110)
-SPSG2 <- subset(Chla_year, Lat > -40 & Lat < 0 & Lon > -180 & Lon < -80)
-NPSG <- rbind(NPSG1, NPSG2)
-SPSG <- rbind(SPSG1, SPSG2)
-NASG <- subset(Chla_year, Lat > 5 & Lat < 40 & Lon > -75 & Lon < -10)
-SASG <- subset(Chla_year, Lat > -40 & Lat < -5 & Lon > -60 & Lon < 10)
-IOSG <- subset(Chla_year, Lat > -40 & Lat < -10 & Lon > 50 & Lon < 110)
-NPSG$gyres <- 'NPSG'
-SPSG$gyres <- 'SPSG'
-NASG$gyres <- 'NASG'
-SASG$gyres <- 'SASG'
-IOSG$gyres <- 'IOSG'
-ocean_gyre <- rbind(NPSG, SPSG, NASG, SASG, IOSG)
-
-
-## Comparison of annually integrated regional NCP before and after correction in five subtropical oligotrophic gyres (Fig. 4c)
-
-dat <- read.csv('../output/global_NCP_grid_EOF.csv')
-dat_year <- subset(dat, Month == 13)
-dat_year <- na.omit(merge(dat_year, ocean_gyre, by = c('Lon', 'Lat'), all.y = TRUE))
-
-dat_year$Lat_sum <- 110000*cos(abs(dat_year$Lat)*pi/180)*110000*(dat_year$NCP*365/1000)/10^15
-dat_year_sum1 <- summaryBy(Lat_sum~gyres, dat_year, FUN = sum)
-dat_year_sum1$NCP <- 'Before_correction'
-dat_year$Lat_sum <- 110000*cos(abs(dat_year$Lat)*pi/180)*110000*(dat_year$NCP_corr*365/1000)/10^15
-dat_year_sum2 <- summaryBy(Lat_sum~gyres, dat_year, FUN = sum)
-dat_year_sum2$NCP <- 'After_correction'
-dat_year_sum <- rbind(dat_year_sum1, dat_year_sum2)
-
-dat_year_sum$gyres <- factor(dat_year_sum$gyres, levels = c('NASG', 'SASG', 'NPSG', 'SPSG', 'IOSG'))
-dat_year_sum$NCP <- factor(dat_year_sum$NCP, levels = c('Before_correction', 'After_correction'))
-
-p_NCP_gyre <- ggplot(dat_year_sum, aes(gyres, Lat_sum.sum, fill = NCP)) +
-geom_col(position = 'dodge', color = 'black') +
-scale_fill_manual(values = c('#4475b4', '#fde9df')) +
-theme(panel.grid = element_blank(), 
-	panel.background = element_rect(color = 'black', fill = 'white'), 
-	axis.ticks = element_line(color = 'black', size = 0.5), 
-	axis.text.y = element_text(color = 'black', size = 9), 
-	axis.text.x = element_text(color = 'black', size = 9),
-	legend.key = element_blank()) +
-scale_y_continuous(limits = c(-3, 1), expand = c(0, 0)) +
-geom_hline(yintercept = 0) +
-labs(x = '', y = 'NCP (Pg C yr−1)', fill = '')
-
-p_NCP_gyre
-
-## Temporal variation of monthly averaged daily rates of corrected NCP in the five subtropical oligotrophic gyres (Fig. 4e)
-
-dat <- read.csv('../output/global_NCP_grid_EOF.csv')
-dat_month <- subset(dat, Month != 13)
-dat_month <- na.omit(merge(dat_month, ocean_gyre, by = c('Lon', 'Lat'), all.y = TRUE))
-dat_month <- summaryBy(NCP_corr~gyres+Month, dat_month, FUN = c(mean, sd))
-
-dat_month$gyres <- factor(dat_month$gyres, levels = c('NASG', 'SASG', 'NPSG', 'SPSG', 'IOSG'))
-
-p_NCP_gyre_month <- ggplot(dat_month, aes(Month, NCP_corr.mean)) +
-geom_errorbar(aes(ymin = NCP_corr.mean-NCP_corr.sd, ymax = NCP_corr.mean+NCP_corr.sd, color = gyres), position = position_dodge(width = 0.5), width = 0.35) +
-geom_line(aes(color = gyres), position = position_dodge(width = 0.5)) +
-geom_point(aes(color = gyres), position = position_dodge(width = 0.5), size = 2) +
-scale_color_manual(values = c('#0d3dc8', '#009c00', '#c52125', '#de8c26', '#a800f4')) +
-theme(panel.grid = element_blank(), 
-	panel.background = element_rect(color = 'black', fill = 'white'), 
-	axis.ticks = element_line(color = 'black', size = 0.5), 
-	axis.text.y = element_text(color = 'black', size = 9), 
-	axis.text.x = element_text(color = 'black', size = 9),
-	legend.key = element_blank()) +
-scale_x_continuous(breaks = c(1:12), expand = c(0, 0)) +
-scale_y_continuous(limits = c(-500, 500), expand = c(0, 0)) +
-geom_hline(yintercept = 0) +
-labs(y = 'NCP (mg C m−2 day−1)', color = '')
-
-p_NCP_gyre_month
 
