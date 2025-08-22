@@ -8,9 +8,9 @@ library(terra)
 library(MBA)
 
 
-# Read data, for calcuLation details, see "scripts/figureS7.R"
+# Read data, for calcuLation details, see "scripts/figureS9.R"
 dat <- read.csv('../output/global_NCP_grid_EOF.csv')
-
+dat <- subset(dat, Lat > -65 & Lat < 65)
 
 # Plot robinson map showing monthly climatological NCP
 for (n in 1:12) {
