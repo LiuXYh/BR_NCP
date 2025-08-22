@@ -4,7 +4,7 @@ library(reshape2)
 library(ggplot2)
 
 
-# Comparison of BA using bar charts before and after 24-hour incubation (Fig. E1a)
+# Comparison of BA using bar charts before and after 24-hour incubation (Fig. S2a)
 dat <- read.csv('../data/field_sampling.csv')
 
 BA <- dat[c('No', 'BA_t0', 'BA_t1')]
@@ -29,7 +29,7 @@ labs(x = '', y = 'BA (cells mL−1)')
 p_BA
 
 
-# Comparison of BP using bar charts before and after 24-hour incubation (Fig. E1b)
+# Comparison of BP using bar charts before and after 24-hour incubation (Fig. S2b)
 BP <- dat[c('No', 'BP_t0', 'BP_t1')]
 BP <- melt(BP, id = 'No')
 BP$variable <- factor(BP$variable, levels = c('BP_t0', 'BP_t1'), labels = c('Before incubation (BPt0)', 'After incubation (BPt1)'))
@@ -52,7 +52,7 @@ labs(x = '', y = 'BP (mg C m−3 day−1)')
 p_BP
 
 
-# Comparison of sBP using bar charts before and after 24-hour incubation (Fig. E1a)
+# Comparison of sBP using bar charts before and after 24-hour incubation (Fig. S2c)
 dat$sBP_t0 <- dat$BP_t0/dat$BA_t0*10^6
 dat$sBP_t1 <- dat$BP_t1/dat$BA_t1*10^6
 
@@ -100,5 +100,5 @@ labs(x = 'Lon (°E)', y = 'Lat (°N)')
 p
 
 
-# Finally, combine the maps and bar charts using external plotting tools to create Fig. E1a-c
+# Finally, combine the maps and bar charts using external plotting tools to create Fig. S2a-c
 
