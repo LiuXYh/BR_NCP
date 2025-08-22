@@ -9,10 +9,11 @@ library(terra)
 
 
 RS_model <- read.csv('../data/WOA_RS_grid.csv')
+RS_model <- subset(RS_model, Lat > -65 & Lat < 65)
 BG_model <- read.csv('../data/inverse_biogeochemical_model.csv')
+BG_model <- subset(BG_model, Lat > -65 & Lat < 65)
 
-
-# Satellite-derived estimates of NCP from O2/Ar observations, calculated as Li and Cassar (2016) (Fig. S4a)
+# Satellite-derived estimates of NCP from O2/Ar observations, calculated as Li and Cassar (2016) (Fig. S7a)
 RS_model$Li_Cassar <- (8.57*RS_model$CbPM)/(17.9+RS_model$SST)
 model <- summaryBy(Li_Cassar~Lon+Lat, RS_model, FUN = function(x) mean(x, na.rm = TRUE))  # annual mean
 names(model)[3] <- 'NCP'
@@ -47,7 +48,7 @@ labs(color = 'NCP\n(mg C m-2 day-1)')
 p_Li_Cassar
 
 
-# Global carbon export estimates obtained from an inverse biogeochemical model, calculated as Wang et al (2023) (Fig. S4b)
+# Global carbon export estimates obtained from an inverse biogeochemical model, calculated as Wang et al (2023) (Fig. S7b)
 for (i in 1:nrow(model)) {
     BG_model1 <- BG_model[BG_model$Lon <= (model[i,'Lon']+1) & BG_model$Lat <= (model[i,'Lat']+1), ]
     BG_model1 <- BG_model1[BG_model1$Lon >= (model[i,'Lon']-1) & BG_model1$Lat >= (model[i,'Lat']-1), ]
@@ -81,7 +82,7 @@ labs(color = 'TOC flux\n(mg C m-2 day-1)')
 p_Wang
 
 
-# Global carbon export estimates based on the 234Th-derived empirical carbon export ratio (f-ratio), calculated as Henson et al (2011) (Fig. S4c)
+# Global carbon export estimates based on the 234Th-derived empirical carbon export ratio (f-ratio), calculated as Henson et al (2011) (Fig. S7c)
 RS_model$Henson <- RS_model$CbPM*0.23*exp(-0.08*RS_model$SST)
 model <- summaryBy(Henson~Lon+Lat, RS_model, FUN = function(x) mean(x, na.rm = TRUE))  # annual mean
 names(model)[3] <- 'NCP'
@@ -111,4 +112,3 @@ theme_minimal() +
 labs(color = 'POC flux\n(mg C m-2 day-1)')
 
 p_Henson
-
