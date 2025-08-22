@@ -16,10 +16,10 @@ dat$sBP_t1 <- dat$BP_t1/dat$BA_t1*10^6
 dat$sBP_fold <- dat$sBP_t1/dat$sBP_t0
 
 
-# Get the mean of the fold change
-mean(dat$BA_fold, na.rm = TRUE)
-mean(dat$BP_fold, na.rm = TRUE)
-mean(dat$sBP_fold, na.rm = TRUE)
+# Get the median of the fold change
+median(dat$BA_fold, na.rm = TRUE)
+median(dat$BP_fold, na.rm = TRUE)
+median(dat$sBP_fold, na.rm = TRUE)
 
 
 # Presented as violin plots showing the distribution of growth multiples of BA, BP, and sBP before and after incubation (Fig. 2a)
@@ -39,9 +39,6 @@ theme(panel.grid = element_blank(),
 scale_y_continuous(expand = expansion(mult = c(0.1, 0.1))) +
 scale_y_break(breaks = c(10, 10), scales = 0.5) +
 geom_hline(yintercept = 1, color = 'red') +
-annotate('text', label = '×', x = 1, y = mean(dat$BA_fold, na.rm = TRUE), size = 5, color = 'red') +
-annotate('text', label = '×', x = 2, y = mean(dat$BP_fold, na.rm = TRUE), size = 5, color = 'red') +
-annotate('text', label = '×', x = 3, y = mean(dat$sBP_fold, na.rm = TRUE), size = 5, color = 'red') +
 labs(x = '', y = 'Fold')
 
 
