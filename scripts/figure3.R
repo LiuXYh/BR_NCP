@@ -22,7 +22,7 @@ theme(panel.grid = element_blank(),
 	axis.line = element_line(color = 'black', size = 0.5), 
 	axis.ticks = element_line(color = 'black', size = 0.5), 
 	axis.text = element_text(color = 'black', size = 9)) +
-labs(x = 'BR (mg C m−3 day−1)', y = 'Density', fill = '')
+labs(x = 'BR (mg C m−3 day−1)', y = 'Probability density', fill = '')
 
 p_BR
 
@@ -38,7 +38,7 @@ theme(panel.grid = element_blank(),
 	axis.text = element_text(color = 'black', size = 9)) +
 scale_x_continuous(limits = c(0, 1)) +
 geom_vline(xintercept = mean(dat$BRbias_CR, na.rm = TRUE), linetype = 2) +
-labs(x = 'BRbias/CR', y = 'Density')
+labs(x = 'BRbias/CR', y = 'Probability density')
 
 p_BRbias_CR
 
