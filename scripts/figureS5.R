@@ -53,5 +53,5 @@ labs(x = '', y = 'NCP (mg C m−3 day−1)')
 p_NCP
 
 
-# Finally, combine the maps and bar charts using external plotting tools to create Fig. S2
+# Finally, combine the maps and bar charts using external plotting tools to create Fig. S5
 
