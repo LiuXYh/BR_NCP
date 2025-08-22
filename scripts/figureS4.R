@@ -51,5 +51,5 @@ labs(x = 'Lon (°E)', y = 'Lat (°N)')
 p
 
 
-# Finally, combine the maps and bar charts using external plotting tools to create Fig. E3
+# Finally, combine the maps and bar charts using external plotting tools to create Fig. S4
 
