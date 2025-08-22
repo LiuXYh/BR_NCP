@@ -59,7 +59,7 @@ results_corr <- data.frame(Actual = test_data$NCP_corr, Predicted = meta_predict
 
 #### Model accuracy and variable importance in predicting net community production using the random forest approach
 
-# Observed versus predicted values for the validation dataset for uncorrected and corrected NCP (Fig. S7a-b)
+# Observed versus predicted values for the validation dataset for uncorrected and corrected NCP (Fig. S9a-b)
 max1 <- max(c(results$Actual, results$Predicted, results_corr$Actual, results_corr$Predicted), na.rm = TRUE)
 min1 <- min(c(results$Actual, results$Predicted, results_corr$Actual, results_corr$Predicted), na.rm = TRUE)
 
@@ -99,7 +99,7 @@ sqrt(mean((results$Predicted - results$Actual)^2))  #RMSE
 sqrt(mean((results_corr$Predicted - results_corr$Actual)^2))  #RMSE
 
 
-# Relative importance of predictor variables in the RF model for the uncorrected and corrected NCP (Fig. S7c-d)
+# Relative importance of predictor variables in the RF model for the uncorrected and corrected NCP (Fig. S9c-d)
 set.seed(i)
 rfP_model <- rfPermute(predictors_train, train_data$NCP, importance = TRUE, ntree = 500, nrep = 1000, num.cores = 4)
 importance_rfP_model <- data.frame(importance(rfP_model, scale = TRUE), check.names = FALSE)
