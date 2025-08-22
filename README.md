@@ -95,6 +95,11 @@ Global light-dark bottle incubation dataset, collected from previously reported 
 - **Lat**: Grid latitude
 - **TOCflux**: Rate of total organic carbon export (particulate organic carbon and dissolved organic carbon) at the euphotic zone (unit: mg C m⁻² d⁻¹)
 
+### BGC-Argo.csv
+Meridional distribution of annually averaged net community production estimated using BGC-Argo data, derived from Izett et al. (2024).
+- **Lat**: Latitude
+- **NCP**: Net community production or carbon export rates (unit: mg C m⁻² d⁻¹)
+- **Reference**: Data contributor
 
 # /output/
 
