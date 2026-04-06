@@ -41,6 +41,19 @@ Time-series observations of bacterial abundance and bacterial production during 
 - **BP_mean**: Mean bacterial production measured at the i-th hour (unit: mg C m⁻³ d⁻¹)
 - **BP_sd**: Standard deviation of bacterial production measured at the i-th hour
 
+### ETS_measurement.csv
+Electron transport system (ETS) experimental data.
+- **Cruise**: Cruise time
+- **Date**: Sampling date
+- **Time**: Sampling time
+- **Lon**: Sampling longitude
+- **Lat**: Sampling latitude
+- **Depth**: Sampling depth (unit: m)
+- **BGE**: Bacterial Growth Efficiency
+- **BR_total_filtered**: Total bacterial respiration rate during 24-hour bottle incubations (0.8-μm pre-filtered system), including initial bacterial respiration and the overestimated bacterial respiration due to the bottle incubation effect (unit: mg C m⁻³ d⁻¹)
+- **BR_insitu_filtered**: Corrected bacterial respiration at the initial incubation time (0.8-μm pre-filtered system) (unit: mg C m⁻³ d⁻¹)
+- **INTF_0.2_0.8**: INT-F production rates measured using the electron transport system (ETS) method reflect bacterial respiratory activity (unit: μmol m⁻³ d⁻¹)
+  
 ### light-dark_bottle_dataset.csv
 Global light-dark bottle incubation dataset, collected from previously reported literature.
 - **Date**: Sampling date
