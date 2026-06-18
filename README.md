@@ -1,4 +1,4 @@
-Scripts and data to generate models and figures for **"Revisiting the Ocean’s Metabolic Balance: Correcting Biases in Bottle Incubations Reveals a More Autotrophic Ocean"**.
+Scripts and data to generate models and figures for **"Liu Y, et al. 2026. Revisiting the ocean's metabolic balance: correcting biases in bottle incubations reveals a more autotrophic and dynamic ocean, Global Biogeochemical Cycles, 40(6), e2026GB009114, doi:10.1029/2026GB009114"**.
 
 # /data/
 
